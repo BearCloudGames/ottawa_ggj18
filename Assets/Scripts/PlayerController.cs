@@ -11,30 +11,47 @@ public class PlayerController : MonoBehaviour {
     public float leftVibrate = 3;
     public float rightVibrate = 3;
 
-    private void Start()
-    {
-        Vibration();
-    }
-
     void Update () {
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(movement.normalized * speed * Time.deltaTime);
         HandleAnimation();
 	}
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 9) //ghost layer
+        {
+            GameManager.instance.SwitchPlanes();
+            SpookyVibrations();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 9) //ghost layer
+        {
+            GameManager.instance.SwitchPlanes();
+            ClearVibration();
+        }
+    }
+
     void HandleAnimation()
     {
 
     }
 
-    //Placeholder method to show the vibration
-    void Vibration()
+    void SpookyVibrations()
     {
         GamePad.SetVibration(0, rightVibrate, leftVibrate);
     }
 
+    void ClearVibration()
+    {
+        GamePad.SetVibration(0, 0,0);
+    }
+
     private void OnApplicationQuit()
     {
-        GamePad.SetVibration(0, 0, 0);
+        ClearVibration();
     }
 }
