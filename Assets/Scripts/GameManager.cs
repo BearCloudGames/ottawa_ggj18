@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	GameObject[] EnvironmentAssets;
+    public static GameManager instance;
 
-	// Use this for initialization
-	void Start () {
-		EnvironmentAssets = GameObject.FindGameObjectsWithTag ("Environment");
+	GameObject[] SwappableAssets;
+
+    private void Awake()
+    {
+        if (instance != null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+    // Use this for initialization
+    void Start () {
+		SwappableAssets = GameObject.FindGameObjectsWithTag ("Swappable");
 	}
 	
 	// Update is called once per frame
@@ -16,9 +26,9 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	void SwitchPlanes () {
-		foreach(GameObject environmentAsset in EnvironmentAssets) {
-			environmentAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
+	public void SwitchPlanes () {
+		foreach(GameObject swappableAsset in SwappableAssets) {
+			swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 		}
 	}
 }
