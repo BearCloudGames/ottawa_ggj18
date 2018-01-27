@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour {
         if(sensedGhost!= null)
         {
             if (sensedGhost.position.x < transform.position.x)
-                GamePad.SetVibration(0, 1, 0);
+                GamePad.SetVibration(0, (sensedGhost.GetComponent<CircleCollider2D>().radius - Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius, 0);
             else
-                GamePad.SetVibration(0, 0, 1);
+                GamePad.SetVibration(0, 0, (sensedGhost.GetComponent<CircleCollider2D>().radius-Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius);
         }
 	}
 
