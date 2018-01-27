@@ -22,5 +22,20 @@ public class UIManager : MonoBehaviour {
     {
         lifeText.GetComponent<Text>().text = newLife.ToString("N0");
         lifeBar.transform.localScale = new Vector2(newLife / 100, lifeBar.transform.localScale.y);
+        if(lifeBar.transform.localScale.x < 0.3)
+        {
+            StartCoroutine(HealthbarPulse());
+        }
+        else
+        {
+            StopAllCoroutines();
+            lifeBar.GetComponent<Image>().color = Color.white;
+        }
+    }
+
+    IEnumerator HealthbarPulse()
+    {
+        lifeBar.GetComponent<Image>().color = Color.Lerp(Color.white, Color.red, Mathf.PingPong(Time.time, 1));
+        yield return new WaitForEndOfFrame();
     }
 }
