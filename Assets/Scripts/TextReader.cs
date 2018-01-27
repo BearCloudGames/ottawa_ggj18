@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class TextReader : MonoBehaviour {
 
-	// Use this for initialization
+	// Set which dialogue script this script reads from
 	public TextAsset textFile;
 	string[] dialogueLines;
 	Text textBox;
 
+	// Set the time for fadeing in/out each line and how long it stays on the screen for
 	public float FadeTime = 2.0f;
 	public float OnScreenTime = 2.0f;
 
@@ -18,20 +19,23 @@ public class TextReader : MonoBehaviour {
 		textBox = GetComponent<Text> ();
 
 		if (textFile != null) {
+			// Adds a new dialogue piece per line break in the text file
 			dialogueLines = (textFile.text.Split ('\n'));
 		}
 
+		// Set it to the first line
 		textBox.text = dialogueLines [0];
 
+		// Keep showing lines until we've gone through all of them
 		InvokeRepeating("ReadNextLine", OnScreenTime + FadeTime, OnScreenTime + (FadeTime * 2));
 	}
-
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
+	// Fade out and go to the next line
 	void ReadNextLine() {
 		textBox.CrossFadeAlpha (0f, FadeTime, false);
 		Invoke("ChangeText", OnScreenTime);
@@ -41,8 +45,8 @@ public class TextReader : MonoBehaviour {
 		foreach (string line in dialogueLines) {
 			if (line == textBox.text) {
 				int nextLine = System.Array.IndexOf (dialogueLines, line) + 1;
+				// Stop this coroutine if we've reached the end of the script, otherwise continue
 				if (nextLine == dialogueLines.Length) {
-					print ("Finished script");
 					CancelInvoke ();
 					break;
 				} else {
@@ -51,6 +55,7 @@ public class TextReader : MonoBehaviour {
 				}
 			}
 		}
+
 		textBox.CrossFadeAlpha (1f, FadeTime, false);
 	}
 }

@@ -15,7 +15,7 @@ public class Ghost : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		print ("working");
+		// Turn on the dialogue box
 		transform.GetChild (0).gameObject.SetActive (true);
 	}
 }
