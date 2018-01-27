@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour {
 
     Transform sensedGhost;
 
+    public float life = 100;
+
+    bool dead = false;
+
     void Update () {
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(movement.normalized * speed * Time.deltaTime);
@@ -21,6 +25,18 @@ public class PlayerController : MonoBehaviour {
                 GamePad.SetVibration(0, (sensedGhost.GetComponent<CircleCollider2D>().radius - Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius, 0);
             else
                 GamePad.SetVibration(0, 0, (sensedGhost.GetComponent<CircleCollider2D>().radius-Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius);
+        }
+
+        if (!dead)
+        {
+            life -= Time.deltaTime;
+            UIManager.instance.UpdateLife(life);
+            if (life <= 0)
+            {
+                life = 0;
+                Die();
+                dead = true;
+            }
         }
 	}
 
@@ -57,6 +73,11 @@ public class PlayerController : MonoBehaviour {
     void ClearVibration()
     {
         GamePad.SetVibration(0, 0,0);
+    }
+
+    void Die()
+    {
+        Debug.Log("Haha RIP");
     }
 
     private void OnApplicationQuit()
