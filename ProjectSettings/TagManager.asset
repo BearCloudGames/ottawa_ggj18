@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Environment
+  - Swappable
+  - Ghost
   layers:
   - Default
   - TransparentFX
@@ -14,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ghost
+  - Environment
+  - GhostSenseRange
   - 
   - 
   - 
@@ -41,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ghost
+    uniqueID: 3531872907
+    locked: 0
+  - name: Player
+    uniqueID: 4233849453
     locked: 0
