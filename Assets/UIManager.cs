@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
     public static UIManager instance;
 
     public GameObject lifeText;
+    public GameObject lifeBar;
 
     private void Awake()
     {
@@ -20,5 +21,6 @@ public class UIManager : MonoBehaviour {
     public void UpdateLife(float newLife)
     {
         lifeText.GetComponent<Text>().text = newLife.ToString("N0");
+        lifeBar.transform.localScale = new Vector2(newLife / 100, lifeBar.transform.localScale.y);
     }
 }
