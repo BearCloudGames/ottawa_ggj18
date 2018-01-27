@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XInputDotNetPure;
+//using XInputDotNetPure;
 
 
 public class PlayerController : MonoBehaviour {
@@ -10,34 +10,18 @@ public class PlayerController : MonoBehaviour {
 
     Transform sensedGhost;
 
-    public float life = 100;
-
-    bool dead = false;
-
     void Update () {
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(movement.normalized * speed * Time.deltaTime);
         HandleAnimation();
 
-        if(sensedGhost!= null)
-        {
-            if (sensedGhost.position.x < transform.position.x)
-                GamePad.SetVibration(0, (sensedGhost.GetComponent<CircleCollider2D>().radius - Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius, 0);
-            else
-                GamePad.SetVibration(0, 0, (sensedGhost.GetComponent<CircleCollider2D>().radius-Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius);
-        }
-
-        if (!dead)
-        {
-            life -= Time.deltaTime;
-            UIManager.instance.UpdateLife(life);
-            if (life <= 0)
-            {
-                life = 0;
-                Die();
-                dead = true;
-            }
-        }
+//        if(sensedGhost!= null)
+//        {
+//            if (sensedGhost.position.x < transform.position.x)
+//                GamePad.SetVibration(0, (sensedGhost.GetComponent<CircleCollider2D>().radius - Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius, 0);
+//            else
+//                GamePad.SetVibration(0, 0, (sensedGhost.GetComponent<CircleCollider2D>().radius-Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius);
+//        }
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -72,12 +56,7 @@ public class PlayerController : MonoBehaviour {
 
     void ClearVibration()
     {
-        GamePad.SetVibration(0, 0,0);
-    }
-
-    void Die()
-    {
-        Debug.Log("Haha RIP");
+        //GamePad.SetVibration(0, 0,0);
     }
 
     private void OnApplicationQuit()
