@@ -39682,7 +39682,7 @@ Prefab:
     - target: {fileID: 8195094282287295280, guid: 229db069cb780f14db3f93d142ea05ad,
         type: 2}
       propertyPath: m_TileRefreshArray.Array.data[0].m_DirtyIndex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8195094282287295280, guid: 229db069cb780f14db3f93d142ea05ad,
         type: 2}
