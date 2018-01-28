@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4777511730776748}
   - component: {fileID: 199104563896370544}
   - component: {fileID: 198549043154900170}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: BloodTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1585252176335290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.09, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.216, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,7 +101,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1317523568
+  randomSeed: -1999789797
   InitialModule:
     serializedVersion: 3
     enabled: 1
