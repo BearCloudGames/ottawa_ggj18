@@ -11,16 +11,24 @@ public class PlayerController : MonoBehaviour {
     Transform sensedGhost;
 
     public float maxLife = 100;
-    public float life;
+    float life;
     public float drainFactor = 2;
     public float healFactor = 10;
 
+    public float Life
+    {
+        get { return life; }
+        set
+        {
+            life = Mathf.Clamp(value, 0, maxLife);
+        }
+    }
+
 	SpriteRenderer spriteRenderer;
-	bool isMovingRight = true;
 
     void Start ()
     {
-        life = maxLife;
+        Life = maxLife;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
     }
 
@@ -39,27 +47,15 @@ public class PlayerController : MonoBehaviour {
 
         if (sensedGhost == null)
         {
-            if (life >= 0)
-            {
-                life -= Time.deltaTime * drainFactor;
-            }
-            else
-            {
-                life = 0;
-            }
+
+            Life -= Time.deltaTime * drainFactor;
             UIManager.instance.UpdateLife(life);
         }
         else
         {
-            if (life <= maxLife)
-            {
-                life += Time.deltaTime * healFactor;
-            }
-            else
-            {
-                life = maxLife;
-            }
-            UIManager.instance.UpdateLife(life);
+
+                Life += Time.deltaTime * healFactor;
+            UIManager.instance.UpdateLife(Life);
         }
     }
 
@@ -108,11 +104,11 @@ public class PlayerController : MonoBehaviour {
     {
 		float move = Input.GetAxis ("Horizontal");
 
-		if (move > 0 && !isMovingRight) {
-			Flip ();
-		}
-		else if (move < 0 && isMovingRight) {
-			Flip ();
+		if (move > 0){
+            transform.localScale = new Vector2(1,1);
+        }
+		else if (move < 0){
+            transform.localScale = new Vector2(-1, 1);
 		}
     }
 
@@ -125,10 +121,4 @@ public class PlayerController : MonoBehaviour {
     {
         ClearVibration();
     }
-
-	void Flip() {
-		isMovingRight = !isMovingRight;
-
-		spriteRenderer.flipX = !spriteRenderer.flipX;
-	}
 }
