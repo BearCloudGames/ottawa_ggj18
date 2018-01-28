@@ -77,6 +77,14 @@ public class PlayerController : MonoBehaviour {
         else if (collision.gameObject.layer == 9) //ghost layer
         {
 			// Check if the ghost has been activated or not
+			foreach (string Ghost in GameManager.instance.ghostsEncountered) {
+				print (Ghost);
+				if (collision.gameObject.GetComponent<Ghost> ().GhostName == Ghost) {
+					collision.gameObject.SetActive (false);
+					print ("Encountered!");
+					return;
+				}
+			}
 			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0) {
 				GameManager.instance.SwitchPlanes();
 			}
