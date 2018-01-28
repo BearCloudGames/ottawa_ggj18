@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour {
     public static UIManager instance;
 
     public GameObject lifeText;
-    public GameObject lifeBar;
+    public Image lifeBar;
 
     private void Awake()
     {
@@ -21,15 +21,15 @@ public class UIManager : MonoBehaviour {
     public void UpdateLife(float newLife)
     {
         lifeText.GetComponent<Text>().text = newLife.ToString("N0");
-        lifeBar.transform.localScale = new Vector2(newLife / 100, lifeBar.transform.localScale.y);
-        if(lifeBar.transform.localScale.x < 0.3)
+        lifeBar.fillAmount = newLife / 100;
+        if(lifeBar.fillAmount < 0.3)
         {
             StartCoroutine(HealthbarPulse());
         }
         else
         {
             StopAllCoroutines();
-            lifeBar.GetComponent<Image>().color = Color.white;
+            lifeBar.color = Color.white;
         }
     }
 
