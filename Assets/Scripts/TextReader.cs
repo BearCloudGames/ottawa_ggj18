@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TextReader : MonoBehaviour {
 
 	// Set which dialogue script this script reads from
-	public TextAsset textFile;
+	public string DialogueFileName;
 	string[] dialogueLines;
 	Text textBox;
 
@@ -16,12 +16,11 @@ public class TextReader : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		textBox = GetComponent<Text> ();
 
-		if (textFile != null) {
-			// Adds a new dialogue piece per line break in the text file
-			dialogueLines = (textFile.text.Split ('\n'));
-		}
+        XMLReader reader = new XMLReader();
+        dialogueLines = reader.ReadFile(Application.dataPath + "/Text/" + DialogueFileName).ToArray();
 
 		// Set it to the first line
 		textBox.text = dialogueLines [0];
