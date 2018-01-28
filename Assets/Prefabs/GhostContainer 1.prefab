@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 114373263272675036}
   - component: {fileID: 114325686811474062}
   - component: {fileID: 95150934019244738}
+  - component: {fileID: 114313228736420916}
   m_Layer: 5
   m_Name: TextBox
   m_TagString: Untagged
@@ -225,6 +226,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114313228736420916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948378103070106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114325686811474062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ccd5d4389ff48d3a0b57c486d32393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueFileName: 
+  DialogueFileName: Dialogue_Fisherman.xml
   FadeTime: 2
   OnScreenTime: 3
 --- !u!114 &114373263272675036
@@ -251,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
