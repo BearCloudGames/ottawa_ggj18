@@ -32,10 +32,10 @@ public class Ghost : MonoBehaviour {
     private Coroutine current_GradualSetColor;
     public void GradualSetColor(Color c)
     {
-        if (current_GradualSetColor != null)
-        {
-            StopCoroutine(current_GradualSetColor);
-        }
+//        if (current_GradualSetColor != null)
+//        {
+//            StopCoroutine(current_GradualSetColor);
+//        }
         current_GradualSetColor = StartCoroutine(GradualSetColor_Coroutine(c));
     }
 
