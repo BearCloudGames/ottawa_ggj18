@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using XInputDotNetPure;
 
 
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 
     void Die()
     {
-        Debug.Log("haha RIP");
+		SceneManager.LoadScene ("GameOver");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
