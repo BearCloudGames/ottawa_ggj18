@@ -41,7 +41,6 @@ public class Ghost : MonoBehaviour {
 
     public IEnumerator GradualSetColor_Coroutine(Color c)
     {
-		print ("fading");
         while (_spriteRenderer.color != c)
         {
             _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, c, Time.deltaTime);

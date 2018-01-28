@@ -47,9 +47,7 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine (SwapTiles ());
 		foreach (GameObject swappableAsset in SwappableAssets) {
 			if (swappableAsset.layer == 9) {
-				print (swappableAsset.GetComponent<SpriteRenderer> ().color.ToString ());
-				swappableAsset.GetComponent<Ghost>().GradualSetColor(swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ?
-				Color.white : new Color (0, 0, 0, 0));
+				swappableAsset.GetComponent<Ghost>().GradualSetColor(swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ? Color.white : Color.clear);
 //				swappableAsset.GetComponent<SpriteRenderer> ().color = 
 //					swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ? Color.white : new Color (0, 0, 0, 0);
 			} else if (swappableAsset.layer == 8) {
