@@ -11,24 +11,16 @@ public class PlayerController : MonoBehaviour {
     Transform sensedGhost;
 
     public float maxLife = 100;
-    float life;
+    public float life;
     public float drainFactor = 2;
     public float healFactor = 10;
 
-    public float Life
-    {
-        get { return life; }
-        set
-        {
-            life = Mathf.Clamp(value, 0, maxLife);
-        }
-    }
-
 	SpriteRenderer spriteRenderer;
+	bool isMovingRight = true;
 
     void Start ()
     {
-        Life = maxLife;
+        life = maxLife;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
     }
 
@@ -47,15 +39,27 @@ public class PlayerController : MonoBehaviour {
 
         if (sensedGhost == null)
         {
-
-            Life -= Time.deltaTime * drainFactor;
+            if (life >= 0)
+            {
+                life -= Time.deltaTime * drainFactor;
+            }
+            else
+            {
+                life = 0;
+            }
             UIManager.instance.UpdateLife(life);
         }
         else
         {
-
-                Life += Time.deltaTime * healFactor;
-            UIManager.instance.UpdateLife(Life);
+            if (life <= maxLife)
+            {
+                life += Time.deltaTime * healFactor;
+            }
+            else
+            {
+                life = maxLife;
+            }
+            UIManager.instance.UpdateLife(life);
         }
     }
 
@@ -72,16 +76,8 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-			// Check if the ghost has been activated or not
-			foreach (string Ghost in GameManager.instance.ghostsEncountered) {
-				print (Ghost);
-				if (collision.gameObject.GetComponent<Ghost> ().GhostName == Ghost) {
-					collision.gameObject.SetActive (false);
-					print ("Encountered!");
-					return;
-				}
-			}
-			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0) {
+			// Check if the ghost has been activated or not, and don't show it if it's been encountered
+			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0 && !collision.gameObject.GetComponent<Ghost> ().hasReadText) {
 				GameManager.instance.SwitchPlanes();
 			}
         }
@@ -104,11 +100,16 @@ public class PlayerController : MonoBehaviour {
     {
 		float move = Input.GetAxis ("Horizontal");
 
-		if (move > 0){
-            transform.localScale = new Vector2(1,1);
-        }
-		else if (move < 0){
-            transform.localScale = new Vector2(-1, 1);
+		if (move > 0 && !isMovingRight) {
+			Flip ();
+		} else if (move < 0 && isMovingRight) {
+			Flip ();
+		}
+
+		if (move == 0) {
+			GetComponent<Animator> ().SetBool ("IsMoving", false);
+		} else {
+			GetComponent<Animator> ().SetBool ("IsMoving", true);
 		}
     }
 
@@ -121,4 +122,10 @@ public class PlayerController : MonoBehaviour {
     {
         ClearVibration();
     }
+
+	void Flip() {
+		isMovingRight = !isMovingRight;
+
+		spriteRenderer.flipX = !spriteRenderer.flipX;
+	}
 }
