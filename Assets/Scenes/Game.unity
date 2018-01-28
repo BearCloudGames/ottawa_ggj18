@@ -558,7 +558,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4543624877317904, guid: 3e61d11e2919a9546a892fed7b49efed, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1554219685281530, guid: 3e61d11e2919a9546a892fed7b49efed, type: 2}
       propertyPath: m_Name
@@ -611,9 +611,51 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212472202080209410, guid: 54fae71055880874eb21262327f625ed,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f3bd50f23d7dd4778b0b81356694a1ea,
+        type: 3}
+    - target: {fileID: 1687975847253368, guid: 54fae71055880874eb21262327f625ed, type: 2}
+      propertyPath: m_Name
+      value: Lewis
+      objectReference: {fileID: 0}
+    - target: {fileID: 212472202080209410, guid: 54fae71055880874eb21262327f625ed,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -61117843
+      objectReference: {fileID: 0}
+    - target: {fileID: 212472202080209410, guid: 54fae71055880874eb21262327f625ed,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 54fae71055880874eb21262327f625ed, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &993219651 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1687975847253368, guid: 54fae71055880874eb21262327f625ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 883382944}
+--- !u!95 &993219654
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993219651}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8115d15e81a3a4d3abf5b7382263c4d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1317284705
 GameObject:
   m_ObjectHideFlags: 0
@@ -39886,6 +39928,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 229db069cb780f14db3f93d142ea05ad, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1499704715 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1156664344396090, guid: 54fae71055880874eb21262327f625ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 883382944}
+--- !u!114 &1499704719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1499704715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1224bb7cd0ca845168a0f6f47e33c706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1839735485 &1724482800 stripped
 Tilemap:
   m_PrefabParentObject: {fileID: 8195094282108405158, guid: 229db069cb780f14db3f93d142ea05ad,
@@ -39949,12 +40007,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1849737208}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1873450846 stripped
 Transform:
