@@ -6,10 +6,12 @@ public class Ghost : MonoBehaviour {
 
     public string GhostName;
     private TextReader _textReader;
+    private SpriteRenderer _spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
         _textReader = GetComponentInChildren<TextReader>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -25,4 +27,23 @@ public class Ghost : MonoBehaviour {
             _textReader.Initialize();
         }
 	}
+
+    private Coroutine current_GradualSetColor;
+    public void GradualSetColor(Color c)
+    {
+        if (current_GradualSetColor != null)
+        {
+            StopCoroutine(current_GradualSetColor);
+        }
+        current_GradualSetColor = StartCoroutine(GradualSetColor_Coroutine(c));
+    }
+
+    public IEnumerator GradualSetColor_Coroutine(Color c)
+    {
+        while (_spriteRenderer.color != c)
+        {
+            _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, c, Time.deltaTime);
+            yield return null;
+        }
+    }
 }
