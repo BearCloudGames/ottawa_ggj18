@@ -15,9 +15,13 @@ public class PlayerController : MonoBehaviour {
     public float drainFactor = 2;
     public float healFactor = 10;
 
+	SpriteRenderer spriteRenderer;
+	bool isMovingRight = true;
+
     void Start ()
     {
         life = maxLife;
+		spriteRenderer = GetComponent<SpriteRenderer> ();
     }
 
     void Update () {
@@ -94,7 +98,14 @@ public class PlayerController : MonoBehaviour {
 
     void HandleAnimation()
     {
+		float move = Input.GetAxis ("Horizontal");
 
+		if (move > 0 && !isMovingRight) {
+			Flip ();
+		}
+		else if (move < 0 && isMovingRight) {
+			Flip ();
+		}
     }
 
     void ClearVibration()
@@ -106,4 +117,10 @@ public class PlayerController : MonoBehaviour {
     {
         ClearVibration();
     }
+
+	void Flip() {
+		isMovingRight = !isMovingRight;
+
+		spriteRenderer.flipX = !spriteRenderer.flipX;
+	}
 }
