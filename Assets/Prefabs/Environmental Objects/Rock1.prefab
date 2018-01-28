@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4464335720382368}
   - component: {fileID: 212064682899217934}
+  - component: {fileID: 58552098920029238}
   m_Layer: 0
   m_Name: astral_rock_1
   m_TagString: Untagged
@@ -52,6 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4512144203791602}
   - component: {fileID: 212995224507680088}
+  - component: {fileID: 58375815262218224}
   m_Layer: 0
   m_Name: astral_rock_1 (1)
   m_TagString: Untagged
@@ -92,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634273639087802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.3, y: 8, z: 0}
+  m_LocalPosition: {x: 65.27077, y: -38.789642, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4464335720382368}
@@ -100,6 +102,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58375815262218224
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1925425305512922}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.44, y: 0.32}
+  serializedVersion: 2
+  m_Radius: 1.96
+--- !u!58 &58552098920029238
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563302910772846}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.44, y: 0.32}
+  serializedVersion: 2
+  m_Radius: 1.96
 --- !u!114 &114340606168687602
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4812578922879182}
   - component: {fileID: 114710760496463114}
+  - component: {fileID: 58100915193987662}
   m_Layer: 0
   m_Name: Rock3
   m_TagString: Swappable
@@ -92,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686480906581294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 45.8, z: 0}
+  m_LocalPosition: {x: -39.390453, y: -15.195678, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4631130376558982}
@@ -100,6 +101,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58100915193987662
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1686480906581294}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09, y: 0.36}
+  serializedVersion: 2
+  m_Radius: 0.59
 --- !u!114 &114710760496463114
 MonoBehaviour:
   m_ObjectHideFlags: 1
