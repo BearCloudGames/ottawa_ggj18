@@ -53,11 +53,14 @@ public class PlayerController : MonoBehaviour {
 
             Life -= Time.deltaTime * drainFactor;
             UIManager.instance.UpdateLife(life);
+			if (Life <= 0) {
+				Die ();
+			}
         }
         else
         {
 
-                Life += Time.deltaTime * healFactor;
+            Life += Time.deltaTime * healFactor;
             UIManager.instance.UpdateLife(Life);
         }
     }
