@@ -10,21 +10,34 @@ using UnityEngine.UI;
 
 public class XMLReader
 {
-    public XMLReader()
+    private XDocument _doc;
+    public XMLReader(string filename)
     {
-
+        _doc = XDocument.Load(filename);
     }
 
-    public List<string> ReadFile(string filename)
+    public List<string> GetLines()
     {
-        XDocument doc = XDocument.Load(filename);
-        List<XElement> lines = doc.Element("Dialogue").Elements("Line").ToList();
+        List<XElement> lines = _doc.Element("Dialogue").Elements("Line").ToList();
         List<string> strings = new List<string>();
         foreach (XElement line in lines)
         {
             strings.Add(line.Value);
         }
         return strings;
+    }
+
+    public string GetHint()
+    {
+        List<XElement> hints = _doc.Element("Dialogue").Elements("Hint").ToList();
+        List<string> strings = new List<string>();
+        foreach (XElement hint in hints)
+        {
+            if (GameManager.instance.ghostsEncountered.Find(x => x.Equals(hint.Attribute("ghostName"))) == null) {
+                return hint.Value;
+            }
+        }
+        return null;
     }
 
 }

@@ -7,7 +7,7 @@ public class TextReader : MonoBehaviour {
 
 	// Set which dialogue script this script reads from
 	public string DialogueFileName;
-	string[] dialogueLines;
+	List<string> dialogueLines;
 	Text textBox;
 
 	// Set the time for fadeing in/out each line and how long it stays on the screen for
@@ -19,8 +19,15 @@ public class TextReader : MonoBehaviour {
 
 		textBox = GetComponent<Text> ();
 
-        XMLReader reader = new XMLReader();
-        dialogueLines = reader.ReadFile(Application.dataPath + "/Text/" + DialogueFileName).ToArray();
+        XMLReader reader = new XMLReader(Application.dataPath + "/Text/" + DialogueFileName);
+        dialogueLines = reader.GetLines();
+        string dialogueHint = reader.GetHint();
+
+        if (dialogueHint == null)
+        {
+            dialogueHint = "You Win!";
+        }
+        dialogueLines.Add(dialogueHint);
 
 		// Set it to the first line
 		textBox.text = dialogueLines [0];
@@ -43,9 +50,9 @@ public class TextReader : MonoBehaviour {
 	void ChangeText() {
 		foreach (string line in dialogueLines) {
 			if (line == textBox.text) {
-				int nextLine = System.Array.IndexOf (dialogueLines, line) + 1;
+				int nextLine = System.Array.IndexOf (dialogueLines.ToArray(), line) + 1;
 				// Stop this coroutine if we've reached the end of the script, otherwise continue
-				if (nextLine == dialogueLines.Length) {
+				if (nextLine == dialogueLines.Count) {
 					CancelInvoke ();
 					break;
 				} else {
