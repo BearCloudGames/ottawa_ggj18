@@ -33,9 +33,7 @@ public class XMLReader
         List<string> strings = new List<string>();
         foreach (XElement hint in hints)
         {
-            if (GameManager.instance.ghostsEncountered.Find(x => x.Equals(hint.Attribute("ghostName"))) == null) {
-				Debug.Log (GameManager.instance.ghostsEncountered[0]);
-
+            if (GameManager.instance.ghostsEncountered.Find(x => x.Equals(hint.Attribute("ghostName").Value)) == null) {
                 return hint.Value;
             }
         }
