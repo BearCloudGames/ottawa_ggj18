@@ -14,7 +14,7 @@ public class Tuple<T1, T2>
     }
 }
 
-public class MusicMaster : MonoBehaviour {
+public class SoundMaster : MonoBehaviour {
 
     private Dictionary<string, AudioSource> _musicDict;
     private float loopLength = 0;
@@ -23,6 +23,9 @@ public class MusicMaster : MonoBehaviour {
     private float currentTime = 0;
 
     private List<Tuple<AudioSource,float>> _toBeEdited;
+
+    private float _randomTime;
+    private float _timer;
 
     bool isAstralPlane = false;
 
@@ -38,7 +41,7 @@ public class MusicMaster : MonoBehaviour {
         }
         barLength = loopLength / 4;
         beatLength = barLength / 4;
-
+        _randomTime = Random.Range(10f, 20f);
         MortalPlaneMode();
 	}
 	
@@ -52,6 +55,14 @@ public class MusicMaster : MonoBehaviour {
             RandomizeMusicLayers_Binary();
         }
         */
+
+        _timer += Time.deltaTime;
+        if (_timer >= _randomTime)
+        {
+            _timer = 0;
+            PlayRandomSoundEffect();
+            _randomTime = Random.Range(10f, 20f);
+        }
 
         foreach (Tuple<AudioSource,float> tuple in _toBeEdited)
         {
@@ -145,5 +156,35 @@ public class MusicMaster : MonoBehaviour {
         SetMusicLayerVolume("Hook1", 0);
         SetMusicLayerVolume("Hook2", 0);
         SetMusicLayerVolume("Hook3", 0);
+    }
+
+    void PlayRandomSoundEffect()
+    {
+        Debug.Log("MY HUSBAND WHERE");
+        int random = Random.Range(0, 5);
+        string soundName;
+        switch (random) {
+            case 0:
+                soundName = "BirdCall1";
+                break;
+            case 1:
+                soundName = "BirdCall2";
+                break;
+            case 2:
+                soundName = "BirdCall3";
+                break;
+            case 3:
+                soundName = "Wind";
+                break;
+            case 4:
+                soundName = "Rain";
+                break;
+            default:
+                soundName = "Rain";
+                break;
+        }
+        _musicDict[soundName].panStereo = Random.Range(-1f, 1f);
+        _musicDict[soundName].pitch = Random.Range(0.8f, 1.2f);
+        _musicDict[soundName].Play();
     }
 }
