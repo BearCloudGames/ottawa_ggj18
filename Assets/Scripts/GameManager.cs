@@ -31,9 +31,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKeyDown ) {
-			SwitchPlanes ();
-		}
+
 	}
 
 	public void SwitchPlanes () {
@@ -45,6 +43,8 @@ public class GameManager : MonoBehaviour {
             {
                 swappableAsset.GetComponent<SpriteRenderer>().color = swappableAsset.GetComponent<SpriteRenderer>().color.a == 0 ?
                     Color.white : new Color(0, 0, 0, 0);
+				if (swappableAsset.GetComponent<SpriteRenderer>().color.a == 0)
+					swappableAsset.transform.GetChild (0).gameObject.SetActive (false);
             }
             else
 			    swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
