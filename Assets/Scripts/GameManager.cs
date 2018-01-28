@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		SwappableAssets = GameObject.FindGameObjectsWithTag ("Swappable");
+        SoundMaster.instance.MortalPlaneMode();
+        StartCoroutine(SoundMaster.instance.PlayMusicInTwoSeconds());
 	}
 	
 	// Update is called once per frame
@@ -36,6 +38,14 @@ public class GameManager : MonoBehaviour {
 
 	public void SwitchPlanes () {
         astral = !astral;
+        if (astral)
+        {
+            SoundMaster.instance.AstralPlaneMode();
+        }
+        else
+        {
+            SoundMaster.instance.MortalPlaneMode();
+        }
         StopAllCoroutines(); ;
         StartCoroutine(SwapTiles());
 		foreach(GameObject swappableAsset in SwappableAssets) {
