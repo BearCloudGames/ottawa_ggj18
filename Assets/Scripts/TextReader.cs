@@ -47,7 +47,8 @@ public class TextReader : MonoBehaviour {
 				// Stop this coroutine if we've reached the end of the script, otherwise continue
 				if (nextLine == dialogueLines.Length) {
 					CancelInvoke ();
-					break;
+					Invoke ("SwitchBack", 1.0f);
+					return;
 				} else {
 					textBox.text = dialogueLines [nextLine];
 					break;
@@ -56,5 +57,9 @@ public class TextReader : MonoBehaviour {
 		}
 
 		textBox.CrossFadeAlpha (1f, FadeTime, false);
+	}
+
+	void SwitchBack() {
+		GameManager.instance.SwitchPlanes ();
 	}
 }
