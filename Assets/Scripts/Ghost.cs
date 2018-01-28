@@ -7,6 +7,7 @@ public class Ghost : MonoBehaviour {
     public string GhostName;
     private TextReader _textReader;
     private SpriteRenderer _spriteRenderer;
+	public bool hasReadText;
 
 	// Use this for initialization
 	void Start () {

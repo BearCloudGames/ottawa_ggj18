@@ -50,6 +50,7 @@ public class TextReader : MonoBehaviour {
 				// Stop this coroutine if we've reached the end of the script, otherwise continue
 				if (nextLine == dialogueLines.Count) {
 					CancelInvoke ();
+					GetComponentInParent<Ghost> ().hasReadText = true;
 					Invoke ("SwitchBack", 1.0f);
 					return;
 				} else {

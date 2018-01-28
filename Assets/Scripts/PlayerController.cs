@@ -76,16 +76,8 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-			// Check if the ghost has been activated or not
-			foreach (string Ghost in GameManager.instance.ghostsEncountered) {
-				print (Ghost);
-				if (collision.gameObject.GetComponent<Ghost> ().GhostName == Ghost) {
-					collision.gameObject.SetActive (false);
-					print ("Encountered!");
-					return;
-				}
-			}
-			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0) {
+			// Check if the ghost has been activated or not, and don't show it if it's been encountered
+			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0 && !collision.gameObject.GetComponent<Ghost> ().hasReadText) {
 				GameManager.instance.SwitchPlanes();
 			}
         }
@@ -110,9 +102,14 @@ public class PlayerController : MonoBehaviour {
 
 		if (move > 0 && !isMovingRight) {
 			Flip ();
-		}
-		else if (move < 0 && isMovingRight) {
+		} else if (move < 0 && isMovingRight) {
 			Flip ();
+		}
+
+		if (move == 0) {
+			GetComponent<Animator> ().SetBool ("IsMoving", false);
+		} else {
+			GetComponent<Animator> ().SetBool ("IsMoving", true);
 		}
     }
 
