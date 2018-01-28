@@ -46,7 +46,10 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-            GameManager.instance.SwitchPlanes();
+			// Check if the ghost has been activated or not
+			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0) {
+				GameManager.instance.SwitchPlanes();
+			}
         }
     }
 
@@ -59,7 +62,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-            GameManager.instance.SwitchPlanes();
+            //GameManager.instance.SwitchPlanes();
         }
     }
 
