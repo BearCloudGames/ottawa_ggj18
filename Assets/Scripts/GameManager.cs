@@ -28,6 +28,12 @@ public class GameManager : MonoBehaviour {
 
 	public void SwitchPlanes () {
 		foreach(GameObject swappableAsset in SwappableAssets) {
+            if(swappableAsset.layer == 9)
+            {
+                swappableAsset.GetComponent<SpriteRenderer>().color = swappableAsset.GetComponent<SpriteRenderer>().color.a == 0 ?
+                    Color.white : new Color(0, 0, 0, 0);
+            }
+            else
 			swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 		}
 	}
