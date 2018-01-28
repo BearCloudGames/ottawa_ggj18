@@ -27,6 +27,7 @@ public class SoundMaster : MonoBehaviour {
     }
 
     private Dictionary<string, AudioSource> _musicDict;
+    private Dictionary<string, AudioSource> _sfxDict;
 
     private float loopLength = 0;
     private float barLength = 0;
@@ -41,17 +42,23 @@ public class SoundMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _musicDict = new Dictionary<string, AudioSource>();
+        _sfxDict = new Dictionary<string, AudioSource>();
         _toBeEdited = new List<Tuple<AudioSource, float>>();
-        AudioSource[] sources = transform.GetComponentsInChildren<AudioSource>();
+        AudioSource[] sources = transform.GetChild(0).GetComponentsInChildren<AudioSource>();
         foreach (AudioSource src in sources)
         {
             loopLength = Mathf.Max(loopLength, src.clip.length);
             _musicDict.Add(src.name, src);
         }
+        sources = transform.GetChild(1).GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource src in sources)
+        {
+            _sfxDict.Add(src.name, src);
+        }
         barLength = loopLength / 4;
         beatLength = barLength / 4;
         _randomTime = Random.Range(10f, 20f);
-        MortalPlaneMode();
+        StartCoroutine(PlayMusicInSeconds(2));
 	}
 	
 	// Update is called once per frame
@@ -111,6 +118,29 @@ public class SoundMaster : MonoBehaviour {
         */
     }
 
+    IEnumerator PlayMusicInSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        PlayMusic();
+    }
+
+    void PlayMusic()
+    {
+        foreach (AudioSource src in _musicDict.Values)
+        {
+            src.volume = 0;
+            src.Play();
+        }
+        if (GameManager.instance.astral)
+        {
+            AstralPlaneMode(false);
+        }
+        else
+        {
+            MortalPlaneMode(false);
+        }
+    }
+
     void RandomizeMusicLayers_Fuzzy() // DEBUG
     {
         foreach (string name in _musicDict.Keys)
@@ -137,9 +167,12 @@ public class SoundMaster : MonoBehaviour {
         }
     }
 
-    public void AstralPlaneMode()
+    public void AstralPlaneMode(bool playArpeggio)
     {
-        _musicDict["Arpeggio1"].Play();
+        if (playArpeggio)
+        {
+            _sfxDict["Arpeggio1"].Play();
+        }
         SetMusicLayerVolume("Beat1", 0);
         SetMusicLayerVolume("Beat2", 0);
         SetMusicLayerVolume("Beat3", 1);
@@ -153,9 +186,17 @@ public class SoundMaster : MonoBehaviour {
         SetMusicLayerVolume("Hook3", 1);
     }
 
-    public void MortalPlaneMode()
+    public void AstralPlaneMode()
     {
-        _musicDict["Arpeggio2"].Play();
+        AstralPlaneMode(true);
+    }
+
+    public void MortalPlaneMode(bool playArpeggio)
+    {
+        if (playArpeggio)
+        {
+            _sfxDict["Arpeggio2"].Play();
+        }
         SetMusicLayerVolume("Beat1", 1);
         SetMusicLayerVolume("Beat2", 1);
         SetMusicLayerVolume("Beat3", 0);
@@ -167,6 +208,11 @@ public class SoundMaster : MonoBehaviour {
         SetMusicLayerVolume("Hook1", 0);
         SetMusicLayerVolume("Hook2", 0);
         SetMusicLayerVolume("Hook3", 0);
+    }
+
+    public void MortalPlaneMode()
+    {
+        MortalPlaneMode(true);
     }
 
     void PlayRandomSoundEffect()
@@ -194,8 +240,8 @@ public class SoundMaster : MonoBehaviour {
                 soundName = "Rain";
                 break;
         }
-        _musicDict[soundName].panStereo = Random.Range(-1f, 1f);
-        _musicDict[soundName].pitch = Random.Range(0.8f, 1.2f);
-        _musicDict[soundName].Play();
+        _sfxDict[soundName].panStereo = Random.Range(-1f, 1f);
+        _sfxDict[soundName].pitch = Random.Range(0.8f, 1.2f);
+        _sfxDict[soundName].Play();
     }
 }
