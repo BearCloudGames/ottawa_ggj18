@@ -334,7 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 732119004}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: 10}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!4 &338130276 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4777511730776748, guid: 7acf0b41166794fc8a9605e88f2101a1,
