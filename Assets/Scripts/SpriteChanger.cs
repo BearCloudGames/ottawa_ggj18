@@ -20,12 +20,15 @@ public class SpriteChanger : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-        if (player.transform.position.y >= transform.position.y)
-            for(int i = 0; i<transform.childCount; i++)
-                transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
-        else
-            for (int i = 0; i < transform.childCount; i++)
-                transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+        if (gameObject.name != "PlayerContainer")
+        {
+            if (player.transform.position.y >= transform.position.y)
+                for (int i = 0; i < transform.childCount; i++)
+                    transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+            else
+                for (int i = 0; i < transform.childCount; i++)
+                    transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+        }
     }
 
 	public void SwitchSprite() {

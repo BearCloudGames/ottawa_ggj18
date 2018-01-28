@@ -27,7 +27,6 @@ public class SoundMaster : MonoBehaviour {
     }
 
     private Dictionary<string, AudioSource> _musicDict;
-    private Dictionary<string, AudioSource> _sfxDict;
 
     private float loopLength = 0;
     private float barLength = 0;
@@ -42,18 +41,12 @@ public class SoundMaster : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _musicDict = new Dictionary<string, AudioSource>();
-        _sfxDict = new Dictionary<string, AudioSource>();
         _toBeEdited = new List<Tuple<AudioSource, float>>();
-        AudioSource[] musicSources = transform.GetChild(0).GetComponentsInChildren<AudioSource>();
-        foreach (AudioSource src in musicSources)
+        AudioSource[] sources = transform.GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource src in sources)
         {
             loopLength = Mathf.Max(loopLength, src.clip.length);
             _musicDict.Add(src.name, src);
-        }
-        AudioSource[] sfxSources = transform.GetChild(1).GetComponentsInChildren<AudioSource>();
-        foreach (AudioSource src in sfxSources)
-        {
-            _sfxDict.Add(src.name, src);
         }
         barLength = loopLength / 4;
         beatLength = barLength / 4;
@@ -144,23 +137,9 @@ public class SoundMaster : MonoBehaviour {
         }
     }
 
-    public void PlayMusic()
-    {
-        foreach (AudioSource src in _musicDict.Values)
-        {
-            src.Play();
-        }
-    }
-
-    public IEnumerator PlayMusicInTwoSeconds()
-    {
-        yield return new WaitForSeconds(2.5f);
-        PlayMusic();
-    }
-
     public void AstralPlaneMode()
     {
-        _sfxDict["Arpeggio1"].Play();
+        _musicDict["Arpeggio1"].Play();
         SetMusicLayerVolume("Beat1", 0);
         SetMusicLayerVolume("Beat2", 0);
         SetMusicLayerVolume("Beat3", 1);
@@ -176,7 +155,7 @@ public class SoundMaster : MonoBehaviour {
 
     public void MortalPlaneMode()
     {
-        _sfxDict["Arpeggio2"].Play();
+        _musicDict["Arpeggio2"].Play();
         SetMusicLayerVolume("Beat1", 1);
         SetMusicLayerVolume("Beat2", 1);
         SetMusicLayerVolume("Beat3", 0);
@@ -215,8 +194,8 @@ public class SoundMaster : MonoBehaviour {
                 soundName = "Rain";
                 break;
         }
-        _sfxDict[soundName].panStereo = Random.Range(-1f, 1f);
-        _sfxDict[soundName].pitch = Random.Range(0.8f, 1.2f);
-        _sfxDict[soundName].Play();
+        _musicDict[soundName].panStereo = Random.Range(-1f, 1f);
+        _musicDict[soundName].pitch = Random.Range(0.8f, 1.2f);
+        _musicDict[soundName].Play();
     }
 }

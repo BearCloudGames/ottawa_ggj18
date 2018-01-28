@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour {
     void Start () {
 		SwappableAssets = GameObject.FindGameObjectsWithTag ("Swappable");
         SoundMaster.instance.MortalPlaneMode();
-        StartCoroutine(SoundMaster.instance.PlayMusicInTwoSeconds());
 	}
 	
 	// Update is called once per frame
