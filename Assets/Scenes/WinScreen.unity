@@ -642,7 +642,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HEREAFTER
+  m_Text: 'You found all the ghosts!
+
+    Play Again?'
 --- !u!222 &1322485432
 CanvasRenderer:
   m_ObjectHideFlags: 0
