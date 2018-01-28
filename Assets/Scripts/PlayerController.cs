@@ -74,7 +74,6 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-			
 			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0 && !collision.gameObject.GetComponent<Ghost>().hasReadText) {
 				GameManager.instance.SwitchPlanes();
 			}
@@ -90,8 +89,8 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-            //GameManager.instance.SwitchPlanes();
-        }
+
+		}
     }
 
     void HandleAnimation()

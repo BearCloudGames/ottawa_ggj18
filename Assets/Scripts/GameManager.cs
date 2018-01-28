@@ -36,30 +36,28 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void SwitchPlanes () {
-        astral = !astral;
-        if (astral)
-        {
-            SoundMaster.instance.AstralPlaneMode();
-        }
-        else
-        {
-            SoundMaster.instance.MortalPlaneMode();
-        }
-        StopAllCoroutines(); ;
-        StartCoroutine(SwapTiles());
-		foreach(GameObject swappableAsset in SwappableAssets) {
+		astral = !astral;
+		if (astral) {
+			SoundMaster.instance.AstralPlaneMode ();
+		} else {
+			SoundMaster.instance.MortalPlaneMode ();
+		}
+		StopAllCoroutines ();
+		;
+		StartCoroutine (SwapTiles ());
+		foreach (GameObject swappableAsset in SwappableAssets) {
 			if (swappableAsset.layer == 9) {
-                //swappableAsset.GetComponent<Ghost>().GradualSetColor(swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ?
-                    //Color.white : new Color (0, 0, 0, 0));
+				print (swappableAsset.GetComponent<SpriteRenderer> ().color.ToString ());
+				//swappableAsset.GetComponent<Ghost>().GradualSetColor(swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ?
+				//Color.white : new Color (0, 0, 0, 0));
 				swappableAsset.GetComponent<SpriteRenderer> ().color = 
 					swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ? Color.white : new Color (0, 0, 0, 0);
-//				if (swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0)
-//					swappableAsset.transform.GetChild (0).gameObject.SetActive (false);
 			} else if (swappableAsset.layer == 8) {
 				//Swap player animation
+			} else {
+				print (swappableAsset.name);
+				swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 			}
-            else
-			    swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 		}
 	}
 
