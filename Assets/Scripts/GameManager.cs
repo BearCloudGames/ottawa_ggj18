@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour {
 //					swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ? Color.white : new Color (0, 0, 0, 0);
 			} else if (swappableAsset.layer == 8) {
 				//Swap player animation
+				bool aniState = !swappableAsset.GetComponent<PlayerController>().animator.GetBool("HasSwappedWorlds");
+				swappableAsset.GetComponent<PlayerController>().animator.SetBool ("HasSwappedWorlds", aniState);
+
 			} else {
 				swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 			}
