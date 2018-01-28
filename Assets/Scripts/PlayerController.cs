@@ -25,11 +25,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 	SpriteRenderer spriteRenderer;
+	Animator animator;
 
     void Start ()
     {
         Life = maxLife;
-		spriteRenderer = GetComponent<SpriteRenderer> ();
+		spriteRenderer = GetComponentInChildren<SpriteRenderer> ();
+		animator = GetComponentInChildren<Animator> ();
     }
 
     void Update () {
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour {
         else if (collision.gameObject.layer == 9) //ghost layer
         {
 			
-			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0) {
+			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0 && !collision.gameObject.GetComponent<Ghost>().hasReadText) {
 				GameManager.instance.SwitchPlanes();
 			}
         }
@@ -94,13 +96,20 @@ public class PlayerController : MonoBehaviour {
 
     void HandleAnimation()
     {
-		float move = Input.GetAxis ("Horizontal");
+		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveVertical = Input.GetAxis ("Vertical");
 
-		if (move > 0){
+		if (moveHorizontal > 0){
             transform.localScale = new Vector2(1,1);
         }
-		else if (move < 0){
+		else if (moveHorizontal < 0){
             transform.localScale = new Vector2(-1, 1);
+		}
+
+		if (moveHorizontal == 0 && moveVertical == 0) {
+			animator.SetBool ("IsMoving", false);
+		} else {
+			animator.SetBool ("IsMoving", true);
 		}
     }
 
