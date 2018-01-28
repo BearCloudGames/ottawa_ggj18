@@ -9,16 +9,24 @@ public class SpriteChanger : MonoBehaviour {
 	SpriteRenderer CurrentSpriteRenderer;
 	SpriteRenderer OtherSpriteRenderer;
 
+    Transform player;
+
 	// Use this for initialization
 	void Start () {
-		CurrentSpriteRenderer = this.gameObject.transform.GetChild (0).transform.GetComponent<SpriteRenderer> ();
-		OtherSpriteRenderer = this.gameObject.transform.GetChild (1).transform.GetComponent<SpriteRenderer> ();
+		CurrentSpriteRenderer = gameObject.transform.GetChild (0).transform.GetComponent<SpriteRenderer> ();
+		OtherSpriteRenderer = gameObject.transform.GetChild (1).transform.GetComponent<SpriteRenderer> ();
+
+        player = GameObject.Find("Player").transform;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
+	void LateUpdate () {
+        if (player.transform.position.y >= transform.position.y)
+            for(int i = 0; i<transform.childCount; i++)
+                transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+        else
+            for (int i = 0; i < transform.childCount; i++)
+                transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Background";
+    }
 
 	public void SwitchSprite() {
 		SpriteRenderer tempSprite = OtherSpriteRenderer;
