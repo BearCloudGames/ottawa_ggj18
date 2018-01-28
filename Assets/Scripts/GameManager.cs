@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
 	GameObject[] SwappableAssets;
+
+    public Tilemap astralTiles;
+    public Tilemap corporealTiles;
+
+    bool astral = false;
 
     private void Awake()
     {
@@ -29,8 +35,41 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void SwitchPlanes () {
+        astral = !astral;
+        StopAllCoroutines(); ;
+        StartCoroutine(SwapTiles());
 		foreach(GameObject swappableAsset in SwappableAssets) {
-			swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
+            if(swappableAsset.layer == 9)
+            {
+                swappableAsset.GetComponent<SpriteRenderer>().color = swappableAsset.GetComponent<SpriteRenderer>().color.a == 0 ?
+                    Color.white : new Color(0, 0, 0, 0);
+            }
+            else
+			    swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 		}
 	}
+
+    IEnumerator SwapTiles()
+    {
+        Color newCorporealColour;
+        Color newAstralColour;
+        float corporealAlpha = corporealTiles.color.a;
+        float astralAlpha = astralTiles.color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 1)
+        {
+            if (astral)
+            {
+                newCorporealColour = new Color(1, 1, 1, Mathf.Lerp(corporealAlpha, 0, t));
+                newAstralColour = new Color(1, 1, 1, Mathf.Lerp(astralAlpha, 1, t));
+            }
+            else
+            {
+                newCorporealColour = new Color(1, 1, 1, Mathf.Lerp(corporealAlpha, 1, t));
+                newAstralColour = new Color(1, 1, 1, Mathf.Lerp(astralAlpha, 0, t));
+            }
+            corporealTiles.color = newCorporealColour;
+            astralTiles.color = newAstralColour;
+            yield return null;
+        }
+    }
 }
