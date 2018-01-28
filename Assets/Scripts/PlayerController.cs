@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
     float life;
     public float drainFactor = 2;
     public float healFactor = 10;
+	public bool isGhost;
+
+	Vector2 clampPosition;
 
     public float Life
     {
@@ -39,6 +42,15 @@ public class PlayerController : MonoBehaviour {
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         transform.Translate(movement.normalized * speed * Time.deltaTime);
         HandleAnimation();
+
+		if (isGhost) {
+			Vector2 pos = transform.position;
+			pos.x = Mathf.Clamp (pos.x, (clampPosition.x - 8), (clampPosition.x + 8));
+			pos.y = Mathf.Clamp (pos.y, (clampPosition.y - 4), (clampPosition.y + 4));
+			transform.position = pos;
+		} else {
+			clampPosition = transform.position;
+		}
 
 //        if(sensedGhost!= null)
 //        {

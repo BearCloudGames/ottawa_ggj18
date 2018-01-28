@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour {
 				//bool aniState = !swappableAsset.GetComponent<PlayerController>().animator.GetBool("HasSwappedWorlds");
 				//swappableAsset.GetComponent<PlayerController>().animator.SetBool ("HasSwappedWorlds", aniState);
 				swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
+				swappableAsset.GetComponent<PlayerController>().isGhost = !swappableAsset.GetComponent<PlayerController>().isGhost;
 
 			} else {
 				swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
