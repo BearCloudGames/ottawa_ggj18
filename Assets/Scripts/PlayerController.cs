@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 //using XInputDotNetPure;
 
 
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour {
 
     void Die()
     {
-        Debug.Log("haha RIP");
+		SceneManager.LoadScene ("GameOver");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,7 +75,6 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-			
 			if (collision.gameObject.GetComponent<SpriteRenderer> ().color.a == 0 && !collision.gameObject.GetComponent<Ghost>().hasReadText) {
 				GameManager.instance.SwitchPlanes();
 			}
@@ -90,8 +90,8 @@ public class PlayerController : MonoBehaviour {
         }
         else if (collision.gameObject.layer == 9) //ghost layer
         {
-            //GameManager.instance.SwitchPlanes();
-        }
+
+		}
     }
 
     void HandleAnimation()
