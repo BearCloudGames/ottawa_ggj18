@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     public Tilemap astralTiles;
     public Tilemap corporealTiles;
 
+    public List<string> ghostsEncountered;
+
     bool astral = false;
 
     private void Awake()
