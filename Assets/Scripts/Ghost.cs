@@ -5,10 +5,11 @@ using UnityEngine;
 public class Ghost : MonoBehaviour {
 
     public string GhostName;
+    private TextReader _textReader;
 
 	// Use this for initialization
 	void Start () {
-		
+        _textReader = GetComponentInChildren<TextReader>();
 	}
 	
 	// Update is called once per frame
@@ -17,8 +18,11 @@ public class Ghost : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		// Turn on the dialogue box
-		transform.GetChild (0).gameObject.SetActive (true);
         GameManager.instance.ghostsEncountered.Add(GhostName);
+        // Turn on the dialogue box
+        if (!_textReader.IsInitialized)
+        {
+            _textReader.Initialize();
+        }
 	}
 }

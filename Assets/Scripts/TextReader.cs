@@ -9,14 +9,15 @@ public class TextReader : MonoBehaviour {
 	public string DialogueFileName;
 	List<string> dialogueLines;
 	Text textBox;
+    public bool IsInitialized = false;
 
 	// Set the time for fadeing in/out each line and how long it stays on the screen for
 	public float FadeTime = 2.0f;
 	public float OnScreenTime = 2.0f;
 
 	// Use this for initialization
-	void Start () {
-
+	public void Initialize () {
+        IsInitialized = true;
 		textBox = GetComponent<Text> ();
 
         XMLReader reader = new XMLReader(Application.dataPath + "/Text/" + DialogueFileName);
@@ -36,11 +37,6 @@ public class TextReader : MonoBehaviour {
 		InvokeRepeating("ReadNextLine", OnScreenTime + FadeTime, OnScreenTime + (FadeTime * 2));
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	// Fade out and go to the next line
 	void ReadNextLine() {
 		textBox.CrossFadeAlpha (0f, FadeTime, false);
