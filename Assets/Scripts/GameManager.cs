@@ -48,14 +48,13 @@ public class GameManager : MonoBehaviour {
 		foreach (GameObject swappableAsset in SwappableAssets) {
 			if (swappableAsset.layer == 9) {
 				print (swappableAsset.GetComponent<SpriteRenderer> ().color.ToString ());
-				//swappableAsset.GetComponent<Ghost>().GradualSetColor(swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ?
-				//Color.white : new Color (0, 0, 0, 0));
-				swappableAsset.GetComponent<SpriteRenderer> ().color = 
-					swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ? Color.white : new Color (0, 0, 0, 0);
+				swappableAsset.GetComponent<Ghost>().GradualSetColor(swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ?
+				Color.white : new Color (0, 0, 0, 0));
+//				swappableAsset.GetComponent<SpriteRenderer> ().color = 
+//					swappableAsset.GetComponent<SpriteRenderer> ().color.a == 0 ? Color.white : new Color (0, 0, 0, 0);
 			} else if (swappableAsset.layer == 8) {
 				//Swap player animation
 			} else {
-				print (swappableAsset.name);
 				swappableAsset.GetComponent<SpriteChanger> ().SwitchSprite ();
 			}
 		}
