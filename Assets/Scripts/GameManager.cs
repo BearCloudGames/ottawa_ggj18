@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
     public List<string> ghostsEncountered;
 
-    bool astral = false;
+    public bool astral = false;
 
     private void Awake()
     {
