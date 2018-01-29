@@ -21,7 +21,9 @@ public class Ghost : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-        GameManager.instance.ghostsEncountered.Add(GhostName);
+		if (!GameManager.instance.ghostsEncountered.Contains(GhostName)) {
+			GameManager.instance.ghostsEncountered.Add (GhostName);
+		}
         // Turn on the dialogue box
         if (!_textReader.IsInitialized)
         {

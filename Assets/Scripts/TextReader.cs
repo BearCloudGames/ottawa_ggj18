@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
+using UnityEngine.SceneManagement;
 
 public class TextReader : MonoBehaviour {
 
@@ -51,6 +52,9 @@ public class TextReader : MonoBehaviour {
 				if (nextLine == dialogueLines.Count) {
 					CancelInvoke ();
 					GetComponentInParent<Ghost> ().hasReadText = true;
+					if (GameManager.instance.ghostsEncountered.Count == 6) {
+						SceneManager.LoadScene ("WinScreen");
+					}
 					Invoke ("SwitchBack", 1.0f);
 					return;
 				} else {
