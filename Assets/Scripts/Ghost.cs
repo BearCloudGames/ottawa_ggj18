@@ -46,5 +46,6 @@ public class Ghost : MonoBehaviour {
             _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, c, Time.deltaTime);
             yield return null;
         }
+        _spriteRenderer.color = c;
     }
 }
