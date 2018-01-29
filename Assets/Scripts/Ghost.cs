@@ -41,10 +41,16 @@ public class Ghost : MonoBehaviour {
 
     public IEnumerator GradualSetColor_Coroutine(Color c)
     {
-        while (_spriteRenderer.color != c)
+        float elapsedTime = 0;
+        float time = 1;
+        Color currentColor = _spriteRenderer.color;
+        Color colorFinish = c;
+        while (elapsedTime != time)
         {
-            _spriteRenderer.color = Color.Lerp(_spriteRenderer.color, c, Time.deltaTime);
-            yield return null;
+            currentColor = Color.Lerp(currentColor, colorFinish, (elapsedTime / time));
+            _spriteRenderer.color = currentColor;
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
         _spriteRenderer.color = c;
     }
