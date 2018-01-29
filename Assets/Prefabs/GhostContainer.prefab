@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554219685281530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.78, y: 8.29, z: 0}
+  m_LocalPosition: {x: 0.24, y: 10.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4256674610632216}
@@ -215,7 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af0763e5abf34501902b6459462cab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GhostName: lumberjack
+  GhostName: 
+  hasReadText: 0
 --- !u!114 &114507099600625178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ccd5d4389ff48d3a0b57c486d32393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueFileName: Dialogue_Lumberjack.xml
+  DialogueFileName: Dialogue_Guide.xml
   IsInitialized: 0
   FadeTime: 2
   OnScreenTime: 3
@@ -335,7 +336,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -763094389
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a83f6cdab14034c4da118815bd6e7dfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -370,7 +371,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1803351543
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &224254038951494798

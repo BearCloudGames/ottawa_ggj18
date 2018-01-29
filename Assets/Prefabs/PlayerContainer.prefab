@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114388205289545114}
   - component: {fileID: 50827043393451672}
   - component: {fileID: 70856898983377056}
+  - component: {fileID: 114352492501270090}
   m_Layer: 8
   m_Name: PlayerContainer
   m_TagString: Swappable
@@ -72,8 +73,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4490429787475346}
   - component: {fileID: 212472202080209410}
+  - component: {fileID: 95168862272746938}
   m_Layer: 8
-  m_Name: New Sprite
+  m_Name: Lewis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156664344396090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.424928, y: 1.5739967, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4724106855391254}
@@ -153,7 +155,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &70856898983377056
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -166,8 +168,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.59, y: 5.88}
+  m_Offset: {x: 0, y: -2.04}
+  m_Size: {x: 1.59, y: 2.25}
   m_Direction: 0
 --- !u!95 &95150148796294792
 Animator:
@@ -186,6 +188,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95168862272746938
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1687975847253368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8115d15e81a3a4d3abf5b7382263c4d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114352492501270090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1156664344396090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1224bb7cd0ca845168a0f6f47e33c706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114388205289545114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,6 +231,7 @@ MonoBehaviour:
   maxLife: 100
   drainFactor: 2
   healFactor: 10
+  animator: {fileID: 0}
 --- !u!198 &198399241472511324
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -3647,10 +3678,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -61117843
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b78a139e6de03184691d5c6125ba4552, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3bd50f23d7dd4778b0b81356694a1ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
