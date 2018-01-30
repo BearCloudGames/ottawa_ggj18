@@ -217,7 +217,6 @@ public class SoundMaster : MonoBehaviour {
 
     void PlayRandomSoundEffect()
     {
-        Debug.Log("MY HUSBAND WHERE");
         int random = Random.Range(0, 5);
         string soundName;
         switch (random) {

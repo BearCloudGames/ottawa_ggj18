@@ -21,7 +21,8 @@ public class TextReader : MonoBehaviour {
         IsInitialized = true;
 		textBox = GetComponent<Text> ();
 
-        XMLReader reader = new XMLReader(Application.dataPath + "/Text/" + DialogueFileName);
+        //XMLReader reader = new XMLReader(Application.dataPath + "/Text/" + DialogueFileName);
+		XMLReader reader = new XMLReader(Application.dataPath + "/" + DialogueFileName);
         dialogueLines = reader.GetLines();
         string dialogueHint = reader.GetHint();
 
