@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using XInputDotNetPure;
+using XInputDotNetPure;
 
 
 public class PlayerController : MonoBehaviour {
@@ -52,13 +52,13 @@ public class PlayerController : MonoBehaviour {
 			clampPosition = transform.position;
 		}
 
-//        if(sensedGhost!= null)
-//        {
-//            if (sensedGhost.position.x < transform.position.x)
-//                GamePad.SetVibration(0, (sensedGhost.GetComponent<CircleCollider2D>().radius - Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius, 0);
-//            else
-//                GamePad.SetVibration(0, 0, (sensedGhost.GetComponent<CircleCollider2D>().radius-Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius);
-//        }
+       if(sensedGhost!= null)
+        {
+            if (sensedGhost.position.x < transform.position.x)
+                GamePad.SetVibration(0, (sensedGhost.GetComponent<CircleCollider2D>().radius - Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius, 0);
+            else
+                GamePad.SetVibration(0, 0, (sensedGhost.GetComponent<CircleCollider2D>().radius-Vector2.Distance(sensedGhost.position, transform.position)) / sensedGhost.GetComponent<CircleCollider2D>().radius);
+        }
 
         if (sensedGhost == null)
         {
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour {
 
     void ClearVibration()
     {
-        //GamePad.SetVibration(0, 0,0);
+        GamePad.SetVibration(0, 0,0);
     }
 
     private void OnApplicationQuit()
